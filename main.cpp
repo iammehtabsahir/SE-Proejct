@@ -1,7 +1,9 @@
 #include <iostream>
 #include "calculator.h"
 #include "temperature.h"
-#include "length.h" // Include the length header
+#include "length.h"
+#include "storage.h" // Include the storage header
+#include <string>
 
 using namespace std;
 
@@ -12,11 +14,13 @@ int main() {
     cout << "1. Use Calculator" << endl;
     cout << "2. Use Temperature Converter" << endl;
     cout << "3. Use Length Converter" << endl;
-    cout << "Enter your choice (1, 2, or 3): ";
+    cout << "4. Use Storage Converter" << endl;
+    cout << "Enter your choice (1, 2, 3, or 4): ";
     cin >> choice;
 
     if (choice == 1) {
-        Calculator calc;
+        // ... (Calculator code remains the same)
+         Calculator calc;
         int num1, num2;
         char operation;
 
@@ -50,8 +54,10 @@ int main() {
             default:
                 cout << "Invalid operation!" << endl;
         }
+
     } else if (choice == 2) {
-        TemperatureConverter tempConverter;
+        // ... (Temperature Converter code remains the same)
+         TemperatureConverter tempConverter;
         int tempChoice;
         double temperature;
 
@@ -73,8 +79,10 @@ int main() {
         } else {
             cout << "Invalid temperature conversion choice!" << endl;
         }
+
     } else if (choice == 3) {
-        LengthConverter lengthConverter;
+        // ... (Length Converter code remains the same)
+          LengthConverter lengthConverter;
         int lengthChoice;
         double length;
 
@@ -106,6 +114,29 @@ int main() {
         } else {
             cout << "Invalid length conversion choice!" << endl;
         }
+
+    } else if (choice == 4) {
+        // Storage conversion
+        StorageConverter storageConverter;
+        double value;
+        string fromUnit, toUnit;
+
+        cout << "\nStorage Converter Mode:" << endl;
+        cout << "Enter the storage value: ";
+        cin >> value;
+
+        cout << "Enter the original unit (GB, MB, KB, B): ";
+        cin >> fromUnit;
+
+        cout << "Enter the target unit (GB, MB, KB, B): ";
+        cin >> toUnit;
+
+        try {
+            cout << storageConverter.formatStorage(value, fromUnit, toUnit) << endl;
+        } catch (const invalid_argument& e) {
+            cerr << "Error: " << e.what() << endl;
+        }
+
     } else {
         cout << "Invalid choice!" << endl;
     }
